@@ -19,4 +19,12 @@ class GithubUserRepositoryImpl @Inject constructor(private val githubUserRemoteD
             githubUserRemoteDataSource.getUser(name)
         }
     }
+
+    override fun getFollowers(name: String): Flow<PagingData<GithubUser>> {
+        return githubUserRemoteDataSource.getFollowers(name)
+    }
+
+    override fun getFollowing(name: String): Flow<PagingData<GithubUser>> {
+        return githubUserRemoteDataSource.getFollowing(name)
+    }
 }

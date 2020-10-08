@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_data_txt">Tidak Ada Data</string>
+    <string name="no_name">Tanpa Nama</string>
+    <string name="profile_image">Foto Profil</string>
+    <string name="search_here">Cari di sini</string>
+    <string name="following_title">%d\nMengikuti</string>
+    <string name="follower_title">%d\nPengikut</string>
+    <string name="change_language">Ganti Bahasa</string>
+</resources>

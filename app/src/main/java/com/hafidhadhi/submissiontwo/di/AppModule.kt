@@ -18,6 +18,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.time.Duration
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -40,6 +42,8 @@ object AppModule {
                     level = HttpLoggingInterceptor.Level.BODY
                 })
             }
+            connectTimeout(3, TimeUnit.SECONDS)
+            readTimeout(3, TimeUnit.SECONDS)
         }
         .build()
 
@@ -54,8 +58,11 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideGithubUserRemoteDataSource(retrofit: Retrofit): GithubUserRemoteDataSource =
-        GithubUserRemoteDataSource(retrofit.create(GithubService::class.java))
+    fun provideGithubUserRemoteDataSource(
+        retrofit: Retrofit,
+        moshi: Moshi
+    ): GithubUserRemoteDataSource =
+        GithubUserRemoteDataSource(retrofit.create(GithubService::class.java), moshi)
 }
 
 @Module

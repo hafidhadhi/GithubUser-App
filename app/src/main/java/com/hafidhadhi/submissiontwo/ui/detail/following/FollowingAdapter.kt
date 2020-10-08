@@ -1,6 +1,5 @@
-package com.hafidhadhi.submissiontwo.ui.search
+package com.hafidhadhi.submissiontwo.ui.detail.following
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +11,11 @@ import com.hafidhadhi.submissiontwo.R
 import com.hafidhadhi.submissiontwo.data.remote.dto.GithubUser
 import kotlinx.android.synthetic.main.github_user_item.view.*
 
-class SearchUserAdapter(private val onUserClickListener: OnUserClickListener) :
-    PagingDataAdapter<GithubUser, SearchUserAdapter.ViewHolder>(SearchUserDiffUtil()) {
+class FollowingAdapter :
+    PagingDataAdapter<GithubUser, FollowingAdapter.ViewHolder>(FollowingDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        Log.d(this::class.simpleName, "ONCREATEVH")
-        return ViewHolder.from(parent, onUserClickListener)
+        return ViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -25,18 +23,15 @@ class SearchUserAdapter(private val onUserClickListener: OnUserClickListener) :
         holder.bind(item)
     }
 
-    class ViewHolder(itemView: View, private val onUserClickListener: OnUserClickListener) :
-        RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var githubUser = GithubUser()
 
         companion object {
-            fun from(parent: ViewGroup, onUserClickListener: OnUserClickListener): ViewHolder {
+            fun from(parent: ViewGroup): ViewHolder {
                 val rootView = LayoutInflater.from(parent.context)
                     .inflate(R.layout.github_user_item, parent, false)
-                return ViewHolder(rootView, onUserClickListener).apply {
-                    rootView.setOnClickListener(this)
-                }
+                return ViewHolder(rootView)
             }
         }
 
@@ -52,13 +47,9 @@ class SearchUserAdapter(private val onUserClickListener: OnUserClickListener) :
                 githubUser = item
             }
         }
-
-        override fun onClick(v: View?) {
-            onUserClickListener.onUserClick(githubUser)
-        }
     }
 
-    class SearchUserDiffUtil : DiffUtil.ItemCallback<GithubUser>() {
+    class FollowingDiffUtil : DiffUtil.ItemCallback<GithubUser>() {
         override fun areItemsTheSame(oldItem: GithubUser, newItem: GithubUser): Boolean {
             return oldItem.id == newItem.id
         }
@@ -69,8 +60,4 @@ class SearchUserAdapter(private val onUserClickListener: OnUserClickListener) :
 
     }
 
-}
-
-interface OnUserClickListener {
-    fun onUserClick(githubUser: GithubUser)
 }
