@@ -54,7 +54,6 @@ class FollowerPagingSource(
             val type = Types.newParameterizedType(List::class.java, GithubUser::class.java)
             val adapter = moshi.adapter<List<GithubUser>>(type)
             val users = withContext(Dispatchers.Default) { fromJson(responseStr, adapter) }
-            Log.d(this::class.simpleName, users.toString())
             LoadResult.Page(
                 data = users.map { it },
                 prevKey = if (position == 1) null else position - 1,
@@ -102,7 +101,6 @@ class FollowingPagingSource(
             val type = Types.newParameterizedType(List::class.java, GithubUser::class.java)
             val adapter = moshi.adapter<List<GithubUser>>(type)
             val users = withContext(Dispatchers.Default) { fromJson(responseStr, adapter) }
-            Log.d(this::class.simpleName, users.toString())
             LoadResult.Page(
                 data = users.map { it },
                 prevKey = if (position == 1) null else position - 1,

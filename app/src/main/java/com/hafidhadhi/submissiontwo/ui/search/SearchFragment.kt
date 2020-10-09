@@ -101,6 +101,7 @@ class SearchFragment : Fragment(), OnUserClickListener, SearchView.OnQueryTextLi
             search(it, true)
             githubUserItems.smoothScrollToPosition(0)
         }
+        searchBar.clearFocus()
         return false
     }
 

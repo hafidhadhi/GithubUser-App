@@ -1,6 +1,5 @@
 package com.hafidhadhi.submissiontwo.ui.detail.follower
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +36,6 @@ class FollowerAdapter :
         }
 
         fun bind(item: GithubUser?) {
-            Log.d(this::class.simpleName, item.toString())
             if (item != null) {
                 with(itemView) {
                     userName.text = item.userName
