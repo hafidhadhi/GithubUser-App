@@ -59,7 +59,5 @@ class FollowerAdapter :
         override fun areContentsTheSame(oldItem: GithubUser, newItem: GithubUser): Boolean {
             return oldItem == newItem
         }
-
     }
-
 }

@@ -1,7 +1,6 @@
 package com.hafidhadhi.submissiontwo.ui.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,12 +29,6 @@ class SearchFragment : Fragment(), OnUserClickListener, SearchView.OnQueryTextLi
 
     private val adapter = SearchUserAdapter(this)
 
-    private var isInitialized = false
-
-    companion object {
-        const val EXTRA_USER_NAME = "EXTRA_USER_NAME"
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,16 +38,15 @@ class SearchFragment : Fragment(), OnUserClickListener, SearchView.OnQueryTextLi
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initialProc(savedInstanceState)
+        initialProc()
         setupSearchBar()
         setupAdapter()
         setupRecyclerView()
     }
 
 
-    private fun initialProc(savedInstanceState: Bundle?) {
+    private fun initialProc() {
         val userName = searchViewModel.currentName.value
-        Log.d(this::class.simpleName, userName.toString())
         userName.takeIf { !it.isNullOrEmpty() || !it.isNullOrBlank() }?.let {
             search(it)
         }

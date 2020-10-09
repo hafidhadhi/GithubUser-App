@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -62,6 +63,10 @@ class DetailFragment : Fragment() {
         detailViewModel.isError.observe(viewLifecycleOwner, {
             Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
         })
+
+        detailViewModel.isLoading.observe(viewLifecycleOwner, {
+            progressBar.isVisible = it
+        })
     }
 
     private fun setupToolbar() {
@@ -89,8 +94,14 @@ class DetailFragment : Fragment() {
             adapter = FollowerFollowingAdapter(this@DetailFragment)
         }
         TabLayoutMediator(tabLayout, followerFollowing) { tab, position ->
+            val followersCount = githubUser.followers ?: 0
+            val followers = resources.getQuantityString(
+                R.plurals.followers,
+                followersCount,
+                followersCount
+            )
             tab.text =
-                if (position == 0) getString(R.string.follower_title, githubUser.followers ?: 0)
+                if (position == 0) followers
                 else getString(R.string.following_title, githubUser.following ?: 0)
         }.attach()
     }
@@ -98,8 +109,14 @@ class DetailFragment : Fragment() {
     private fun refreshTab() {
         for (tabIndex in 0 until tabLayout.tabCount) {
             val tab = tabLayout.getTabAt(tabIndex)
+            val followersCount = githubUser.followers ?: 0
+            val followers = resources.getQuantityString(
+                R.plurals.followers,
+                followersCount,
+                followersCount
+            )
             tab?.text =
-                if (tabIndex == 0) getString(R.string.follower_title, githubUser.followers ?: 0)
+                if (tabIndex == 0) followers
                 else getString(R.string.following_title, githubUser.following ?: 0)
         }
     }

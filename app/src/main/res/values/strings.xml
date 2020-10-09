@@ -2,7 +2,6 @@
     <string name="app_name" translatable="false">Submission Two</string>
     <string name="id_value" translatable="false">ID: %d</string>
     <string name="following_title">%d\nFollowing</string>
-    <string name="follower_title">%d\nFollower</string>
     <string name="no_data_txt">No Data</string>
     <string name="no_data_symbol" translatable="false">-</string>
     <string name="company_and_location_value" translatable="false">%s | %s</string>

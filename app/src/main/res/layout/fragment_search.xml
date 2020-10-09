@@ -37,7 +37,9 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 app:defaultQueryHint="@string/search_here"
-                app:iconifiedByDefault="false" />
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                app:submitBackground="@android:color/transparent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

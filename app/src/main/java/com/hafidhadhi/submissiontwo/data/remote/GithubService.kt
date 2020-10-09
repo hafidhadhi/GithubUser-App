@@ -3,7 +3,6 @@ package com.hafidhadhi.submissiontwo.data.remote
 import com.hafidhadhi.submissiontwo.data.remote.dto.GithubUser
 import com.hafidhadhi.submissiontwo.data.remote.dto.SearchUser
 import kotlinx.coroutines.Deferred
-import okhttp3.Response
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.GET

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <plurals name="public_repos">
-        <item quantity="other"> %d repository</item>
+        <item quantity="other">%d repository</item>
+    </plurals>
+    <plurals name="followers">
+        <item quantity="other">%d\nPengikut</item>
     </plurals>
 </resources>

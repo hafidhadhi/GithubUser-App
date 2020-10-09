@@ -1,6 +1,5 @@
 package com.hafidhadhi.submissiontwo.ui.search
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,6 @@ class SearchUserAdapter(private val onUserClickListener: OnUserClickListener) :
     PagingDataAdapter<GithubUser, SearchUserAdapter.ViewHolder>(SearchUserDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        Log.d(this::class.simpleName, "ONCREATEVH")
         return ViewHolder.from(parent, onUserClickListener)
     }
 

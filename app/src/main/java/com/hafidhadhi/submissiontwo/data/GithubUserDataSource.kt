@@ -1,6 +1,5 @@
 package com.hafidhadhi.submissiontwo.data
 
-import androidx.paging.Pager
 import androidx.paging.PagingData
 import com.hafidhadhi.submissiontwo.data.remote.dto.GithubUser
 import kotlinx.coroutines.flow.Flow

@@ -11,15 +11,19 @@ class DetailViewModel @ViewModelInject constructor(private val githubUserReposit
     ViewModel() {
     private val _userName = MutableLiveData<String>()
     private val _isError = MutableLiveData<Exception>()
+    private val _isLoading = MutableLiveData<Boolean>()
     private val _userData: LiveData<GithubUser> = _userName.switchMap {
         val liveData = MutableLiveData<GithubUser>()
         viewModelScope.launch {
             try {
+                _isLoading.value = true
                 val data = githubUserRepository.getUser(it)
                 liveData.value = data
             } catch (e: Exception) {
                 _isError.value = e
                 Log.e(this::class.java.simpleName, e.message.toString(), e)
+            } finally {
+                _isLoading.value = false
             }
         }
         liveData
@@ -27,6 +31,7 @@ class DetailViewModel @ViewModelInject constructor(private val githubUserReposit
 
     val userData: LiveData<GithubUser> = _userData
     val isError: LiveData<Exception> = _isError
+    val isLoading: LiveData<Boolean> = _isLoading
     fun getUser(userName: String) {
         _userName.value = userName
     }

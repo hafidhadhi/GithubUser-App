@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <plurals name="public_repos">
-        <item quantity="one"> %d repository</item>
-        <item quantity="few"> %d repositories</item>
-        <item quantity="other"> %d repositories</item>
+        <item quantity="one">%d repository</item>
+        <item quantity="few">%d repositories</item>
+        <item quantity="other">%d repositories</item>
+    </plurals>
+
+    <plurals name="followers">
+        <item quantity="one">%d\nFollower</item>
+        <item quantity="few">%d\nFollowers</item>
+        <item quantity="other">%d\nFollowers</item>
     </plurals>
 </resources>
