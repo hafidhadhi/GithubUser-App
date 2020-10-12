@@ -6,4 +6,13 @@
     <string name="search_here">Cari di sini</string>
     <string name="following_title">%d\nMengikuti</string>
     <string name="change_language">Ganti Bahasa</string>
+    <string name="favorite_user">User Favorit</string>
+    <string name="detail_user">Detail User</string>
+    <string name="search_user">Cari User</string>
+    <string name="reminder">Pengingat</string>
+    <string name="reminder_desc">Ingatkan setiap 9 pagi</string>
+    <string name="off">Mati</string>
+    <string name="notification_channel_title">Notifikasi Final Submission</string>
+    <string name="reminder_notif_content">Ayo temukan user populer di Github!</string>
+    <string name="setting">Pengaturan</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.hafidhadhi.submissiontwo.data.remote
+package com.hafidhadhi.submissiontwo.data.remote.utils
 
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -8,7 +8,7 @@ class MyInterceptor : Interceptor {
         val request = chain.request()
         val modifiedReq = request.newBuilder()
             .addHeader("Accept", "application/vnd.github.v3+json")
-            .addHeader("Authorization", "token 9cd7a685216af93a60d753a90bb5bfd508cdb329")
+//            .addHeader("Authorization", "token 9cd7a685216af93a60d753a90bb5bfd508cdb329")
             .build()
 
         return chain.proceed(modifiedReq)

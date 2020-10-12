@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Submission Two</string>
+    <string name="app_name" translatable="false">Final Submission</string>
     <string name="id_value" translatable="false">ID: %d</string>
     <string name="following_title">%d\nFollowing</string>
     <string name="no_data_txt">No Data</string>
@@ -10,4 +10,16 @@
     <string name="profile_image">Profile Photo</string>
     <string name="search_here">Search here</string>
     <string name="change_language">Change Language</string>
+    <string name="favorite_user">Favorite User</string>
+    <string name="detail_user">Detail User</string>
+    <string name="search_user">Search User</string>
+    <string name="reminder">Reminder</string>
+    <string name="reminder_desc">Remind every 9 AM</string>
+    <string name="off">Off</string>
+    <string name="change_language_pref_key" translatable="false">change_language_pref_key</string>
+    <string name="reminder_pref_key" translatable="false">reminder_pref_key</string>
+    <string name="notification_channel_id" translatable="false">notification_channel_id</string>
+    <string name="notification_channel_title">Final Submission Notification</string>
+    <string name="reminder_notif_content">Let\'s find popular user on Github!</string>
+    <string name="setting">Setting</string>
 </resources>

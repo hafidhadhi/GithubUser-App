@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.hafidhadhi.submissiontwo.ui.search.SearchFragment"
-        android:label="fragment_search"
+        android:label="@string/search_user"
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_detailFragment"
@@ -17,10 +17,31 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.hafidhadhi.submissiontwo.ui.detail.DetailFragment"
-        android:label="fragment_detail"
+        android:label="@string/detail_user"
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="githubUser"
             app:argType="com.hafidhadhi.submissiontwo.data.remote.dto.GithubUser" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.hafidhadhi.submissiontwo.ui.favorite.FavoriteFragment"
+        android:label="@string/favorite_user"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/preferenceFragment"
+        android:name="com.hafidhadhi.submissiontwo.ui.setting.PreferenceFragment"
+        android:label="@string/setting" />
+    <action
+        android:id="@+id/action_global_preferenceFragment"
+        app:destination="@id/preferenceFragment"
+        app:launchSingleTop="true" />
+    <action
+        android:id="@+id/action_global_favoriteFragment"
+        app:destination="@id/favoriteFragment"
+        app:launchSingleTop="true" />
 </navigation>

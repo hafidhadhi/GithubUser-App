@@ -2,13 +2,13 @@ package com.hafidhadhi.submissiontwo.data.remote.pagingsource
 
 import android.util.Log
 import androidx.paging.PagingSource
-import com.hafidhadhi.submissiontwo.data.remote.GithubPageLinks
 import com.hafidhadhi.submissiontwo.data.remote.GithubService
 import com.hafidhadhi.submissiontwo.data.remote.dto.GithubUser
+import com.hafidhadhi.submissiontwo.data.remote.utils.GithubPageLinks
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.HttpException
@@ -37,15 +37,17 @@ class SearchUserPagingSource(private val service: GithubService, private val nam
 class FollowerPagingSource(
     private val service: GithubService,
     private val moshi: Moshi,
-    private val name: String
+    private val name: String,
+    private val ioDispatcher: CoroutineDispatcher,
+    private val defDispatcher: CoroutineDispatcher
 ) :
     PagingSource<Int, GithubUser>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GithubUser> {
         return try {
             val position = params.key ?: 1
-            val response = withContext(Dispatchers.IO) { callService(name, position) }
+            val response = withContext(ioDispatcher) { callService(name, position) }
             val responseStr =
-                withContext(Dispatchers.Default) {
+                withContext(defDispatcher) {
                     stringifyResponse(
                         response.body() ?: throw HttpException(response)
                     )
@@ -53,7 +55,7 @@ class FollowerPagingSource(
             val pageLinks = GithubPageLinks(response.raw())
             val type = Types.newParameterizedType(List::class.java, GithubUser::class.java)
             val adapter = moshi.adapter<List<GithubUser>>(type)
-            val users = withContext(Dispatchers.Default) { fromJson(responseStr, adapter) }
+            val users = withContext(defDispatcher) { fromJson(responseStr, adapter) }
             LoadResult.Page(
                 data = users.map { it },
                 prevKey = if (position == 1) null else position - 1,
@@ -84,15 +86,17 @@ class FollowerPagingSource(
 class FollowingPagingSource(
     private val service: GithubService,
     private val moshi: Moshi,
-    private val name: String
+    private val name: String,
+    private val ioDispatcher: CoroutineDispatcher,
+    private val defDispatcher: CoroutineDispatcher
 ) :
     PagingSource<Int, GithubUser>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GithubUser> {
         return try {
             val position = params.key ?: 1
-            val response = withContext(Dispatchers.IO) { callService(name, position) }
+            val response = withContext(ioDispatcher) { callService(name, position) }
             val responseStr =
-                withContext(Dispatchers.Default) {
+                withContext(defDispatcher) {
                     stringifyResponse(
                         response.body() ?: throw HttpException(response)
                     )
@@ -100,7 +104,7 @@ class FollowingPagingSource(
             val pageLinks = GithubPageLinks(response.raw())
             val type = Types.newParameterizedType(List::class.java, GithubUser::class.java)
             val adapter = moshi.adapter<List<GithubUser>>(type)
-            val users = withContext(Dispatchers.Default) { fromJson(responseStr, adapter) }
+            val users = withContext(defDispatcher) { fromJson(responseStr, adapter) }
             LoadResult.Page(
                 data = users.map { it },
                 prevKey = if (position == 1) null else position - 1,

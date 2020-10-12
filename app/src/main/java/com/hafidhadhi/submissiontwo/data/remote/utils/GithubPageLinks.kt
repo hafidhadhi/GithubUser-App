@@ -1,4 +1,4 @@
-package com.hafidhadhi.submissiontwo.data.remote
+package com.hafidhadhi.submissiontwo.data.remote.utils
 
 import okhttp3.Response
 

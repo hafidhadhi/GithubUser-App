@@ -91,6 +91,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <FrameLayout
+            android:id="@+id/frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
@@ -100,6 +101,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/setFavoriteFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_primary_favorite_border_24"
+            app:fabSize="auto"
+            app:layout_anchor="@id/frame"
+            app:layout_anchorGravity="bottom|end" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <ProgressBar

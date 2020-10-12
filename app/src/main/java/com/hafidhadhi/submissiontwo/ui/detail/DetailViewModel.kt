@@ -32,7 +32,23 @@ class DetailViewModel @ViewModelInject constructor(private val githubUserReposit
     val userData: LiveData<GithubUser> = _userData
     val isError: LiveData<Exception> = _isError
     val isLoading: LiveData<Boolean> = _isLoading
+    fun isFavorite(id: Int): LiveData<Boolean> = githubUserRepository.isFavorite(id).asLiveData()
+
     fun getUser(userName: String) {
         _userName.value = userName
+    }
+
+    fun setFavorite(user: GithubUser) {
+        viewModelScope.launch {
+            try {
+                _isLoading.value = true
+                githubUserRepository.insertFavUser(user)
+            } catch (e: Exception) {
+                _isError.value = e
+                Log.e(this::class.java.simpleName, e.message.toString(), e)
+            } finally {
+                _isLoading.value = false
+            }
+        }
     }
 }

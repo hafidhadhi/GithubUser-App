@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -51,6 +52,7 @@ class DetailFragment : Fragment() {
         initObserver()
         setupToolbar()
         setupViewPagerNTab()
+        setupFab()
     }
 
     private fun initObserver() {
@@ -118,6 +120,27 @@ class DetailFragment : Fragment() {
             tab?.text =
                 if (tabIndex == 0) followers
                 else getString(R.string.following_title, githubUser.following ?: 0)
+        }
+    }
+
+    private fun setupFab() {
+        val setFavoriteFab = setFavoriteFAB
+        setFavoriteFab.apply {
+            setOnClickListener {
+                detailViewModel.setFavorite(githubUser)
+            }
+        }
+        val favIcon =
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_primary_favorite_24, null)
+        val nonFavIcon =
+            ResourcesCompat.getDrawable(resources, R.drawable.ic_primary_favorite_border_24, null)
+
+        githubUser.id?.let {
+            detailViewModel.isFavorite(it).observe(viewLifecycleOwner, { isFavorite ->
+                setFavoriteFab.apply {
+                    setImageDrawable(if (isFavorite) favIcon else nonFavIcon)
+                }
+            })
         }
     }
 
