@@ -18,7 +18,6 @@ const val ACTION_NOTIFICATION_CLICK =
 const val REMINDER_NOTIF_ID = 200
 const val ACTION_OPEN_MAIN_REQUEST_CODE = 201
 
-
 fun NotificationManager.createChannel(context: Context) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val notificationChannel = NotificationChannel(

@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     private var menu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme_ActivityTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupNavController()

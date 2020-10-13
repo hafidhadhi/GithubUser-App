@@ -35,9 +35,9 @@ class GithubUserRepositoryImpl @Inject constructor(
         return githubUserRemoteDataSource.getFollowing(name)
     }
 
-    override suspend fun insertFavUser(githubUser: GithubUser) {
+    override suspend fun insertOrDeleteFavUser(githubUser: GithubUser) {
         withContext(iODispatcher) {
-            githubUserLocalDataSource.insertFavUser(
+            githubUserLocalDataSource.insertOrDeleteFavUser(
                 FavoriteUserEnt(
                     id = githubUser.id ?: 0,
                     userName = githubUser.userName,
@@ -51,12 +51,6 @@ class GithubUserRepositoryImpl @Inject constructor(
                     following = githubUser.following
                 )
             )
-        }
-    }
-
-    override suspend fun deleteFavUser(id: Int) {
-        withContext(iODispatcher) {
-            githubUserLocalDataSource.deleteFavUser(id)
         }
     }
 

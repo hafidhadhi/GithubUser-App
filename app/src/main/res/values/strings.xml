@@ -22,4 +22,5 @@
     <string name="notification_channel_title">Final Submission Notification</string>
     <string name="reminder_notif_content">Let\'s find popular user on Github!</string>
     <string name="setting">Setting</string>
+    <string name="empty_data_title">Empty Data</string>
 </resources>

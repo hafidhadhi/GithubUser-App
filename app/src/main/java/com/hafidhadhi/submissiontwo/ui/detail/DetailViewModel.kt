@@ -41,13 +41,10 @@ class DetailViewModel @ViewModelInject constructor(private val githubUserReposit
     fun setFavorite(user: GithubUser) {
         viewModelScope.launch {
             try {
-                _isLoading.value = true
-                githubUserRepository.insertFavUser(user)
+                githubUserRepository.insertOrDeleteFavUser(user)
             } catch (e: Exception) {
                 _isError.value = e
                 Log.e(this::class.java.simpleName, e.message.toString(), e)
-            } finally {
-                _isLoading.value = false
             }
         }
     }

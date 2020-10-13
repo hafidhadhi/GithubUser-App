@@ -1,4 +1,4 @@
-package com.hafidhadhi.submissiontwo.ui.favorite
+package com.hafidhadhi.consumerapp.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,26 +9,22 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import com.hafidhadhi.submissiontwo.R
-import com.hafidhadhi.submissiontwo.data.local.entity.FavoriteUserEnt
-import com.hafidhadhi.submissiontwo.data.local.entity.toGithubUserModel
+import com.hafidhadhi.consumerapp.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_favorite.*
-import kotlinx.android.synthetic.main.fragment_following.progressBar
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FavoriteFragment : Fragment(), OnFavUserClickListener {
+class FavoriteFragment : Fragment() {
 
     private val favoriteViewModel by viewModels<FavoriteViewModel>()
 
     private var getFavUserJob: Job? = null
 
-    private val adapter = FavoriteAdapter(this)
+    private val adapter = FavoriteAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +37,10 @@ class FavoriteFragment : Fragment(), OnFavUserClickListener {
         super.onActivityCreated(savedInstanceState)
         setupAdapter()
         setupRecyclerView()
+    }
+
+    override fun onResume() {
+        super.onResume()
         initialProc()
     }
 
@@ -75,12 +75,5 @@ class FavoriteFragment : Fragment(), OnFavUserClickListener {
 
     private fun setupRecyclerView() {
         favoriteItems.adapter = adapter
-    }
-
-    override fun onFavUserClick(favUser: FavoriteUserEnt) {
-        val githubUser = favUser.toGithubUserModel()
-        val directions =
-            FavoriteFragmentDirections.actionFavoriteFragmentToDetailFragment(githubUser)
-        findNavController().navigate(directions)
     }
 }

@@ -20,16 +20,14 @@ import com.hafidhadhi.submissiontwo.ui.detail.following.FollowingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_detail.*
 
+const val EXTRA_GITHUB_USER = "EXTRA_GITHUB_USER"
+
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
 
     private val args by navArgs<DetailFragmentArgs>()
     private val detailViewModel by viewModels<DetailViewModel>()
     private lateinit var githubUser: GithubUser
-
-    companion object {
-        const val EXTRA_GITHUB_USER = "EXTRA_GITHUB_USER"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

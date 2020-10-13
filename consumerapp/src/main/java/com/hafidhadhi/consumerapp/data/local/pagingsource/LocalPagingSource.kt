@@ -1,22 +1,33 @@
 package com.hafidhadhi.submissiontwo.data.local.pagingsource
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import androidx.paging.PagingSource
-import com.hafidhadhi.submissiontwo.data.local.entity.FavoriteUserEnt
-import com.hafidhadhi.submissiontwo.data.local.entity.toFavUsersModel
-import com.hafidhadhi.submissiontwo.provider.KEY_QUERY_PARAM_KEY
-import com.hafidhadhi.submissiontwo.provider.PER_PAGE_QUERY_PARAM_KEY
-import com.hafidhadhi.submissiontwo.provider.uriBuilder
+import com.hafidhadhi.consumerapp.data.local.FavoriteUser
+import com.hafidhadhi.consumerapp.data.local.toFavUsersModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+
+const val SCHEME = "content"
+const val AUTHORITY = "com.hafidhadhi.submissiontwo.provider"
+const val FAVORITE_TABLE = "favorite"
+const val KEY_QUERY_PARAM_KEY = "key"
+const val PER_PAGE_QUERY_PARAM_KEY = "per_page"
+val uriBuilder: Uri.Builder
+    get() {
+        return Uri.Builder()
+            .scheme(SCHEME)
+            .authority(AUTHORITY)
+            .path(FAVORITE_TABLE)
+    }
 
 class FavoritePagingSource(
     private val context: Context,
     private val iODispatcher: CoroutineDispatcher
 ) :
-    PagingSource<Long, FavoriteUserEnt>() {
-    override suspend fun load(params: LoadParams<Long>): LoadResult<Long, FavoriteUserEnt> {
+    PagingSource<Long, FavoriteUser>() {
+    override suspend fun load(params: LoadParams<Long>): LoadResult<Long, FavoriteUser> {
         return withContext(iODispatcher) {
             try {
                 val contentResolver = context.contentResolver

@@ -3,7 +3,6 @@ package com.hafidhadhi.submissiontwo.di
 import android.app.AlarmManager
 import android.app.NotificationManager
 import android.content.Context
-import androidx.preference.PreferenceFragmentCompat
 import androidx.room.Room
 import com.hafidhadhi.submissiontwo.BuildConfig
 import com.hafidhadhi.submissiontwo.data.GithubUserDataSource
@@ -14,7 +13,6 @@ import com.hafidhadhi.submissiontwo.data.remote.GithubUserRemoteDataSource
 import com.hafidhadhi.submissiontwo.data.remote.utils.MyInterceptor
 import com.hafidhadhi.submissiontwo.repository.GithubUserRepository
 import com.hafidhadhi.submissiontwo.repository.GithubUserRepositoryImpl
-import com.hafidhadhi.submissiontwo.ui.setting.PreferenceFragment
 import com.hafidhadhi.submissiontwo.util.createChannel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
@@ -23,7 +21,6 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
@@ -146,11 +143,4 @@ abstract class AppModuleBinds {
     @Singleton
     @Binds
     abstract fun bindGithubUserRepository(impl: GithubUserRepositoryImpl): GithubUserRepository
-}
-
-@Module
-@InstallIn(ActivityComponent::class)
-abstract class FragmentModule {
-    @Binds
-    abstract fun providePreferenceFragment(fragment: PreferenceFragment): PreferenceFragmentCompat
 }

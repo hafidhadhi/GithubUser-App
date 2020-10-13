@@ -10,8 +10,7 @@ interface GithubUserRepository {
     suspend fun getUser(name: String): GithubUser
     fun getFollowers(name: String): Flow<PagingData<GithubUser>>
     fun getFollowing(name: String): Flow<PagingData<GithubUser>>
-    suspend fun insertFavUser(githubUser: GithubUser)
-    suspend fun deleteFavUser(id: Int)
+    suspend fun insertOrDeleteFavUser(githubUser: GithubUser)
     fun getFavUser(): Flow<PagingData<FavoriteUserEnt>>
     fun isFavorite(id: Int): Flow<Boolean>
 }

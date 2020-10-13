@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.hafidhadhi.submissiontwo.R
 import com.hafidhadhi.submissiontwo.data.remote.dto.GithubUser
-import com.hafidhadhi.submissiontwo.ui.detail.DetailFragment.Companion.EXTRA_GITHUB_USER
+import com.hafidhadhi.submissiontwo.ui.detail.EXTRA_GITHUB_USER
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_following.*
 import kotlinx.coroutines.Job

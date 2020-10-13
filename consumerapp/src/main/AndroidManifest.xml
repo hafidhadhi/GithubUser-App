@@ -2,7 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hafidhadhi.consumerapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.hafidhadhi.submissiontwo.READ_DATABASE" />
+    <uses-permission android:name="com.hafidhadhi.submissiontwo.WRITE_DATABASE" />
+
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

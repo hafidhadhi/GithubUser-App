@@ -21,7 +21,6 @@ const val AUTHORITY = "${BuildConfig.APPLICATION_ID}.provider"
 const val FAVORITE_TABLE = "favorite"
 const val KEY_QUERY_PARAM_KEY = "key"
 const val PER_PAGE_QUERY_PARAM_KEY = "per_page"
-const val ID_QUERY_PARAM_KEY = "id"
 val uriBuilder: Uri.Builder
     get() {
         return Uri.Builder()
@@ -62,9 +61,10 @@ class GithubUserProvider : ContentProvider() {
         Log.d(this::class.simpleName, uri.toString())
         return when (uriMatcher.match(uri)) {
             1 -> {
-                val key = uri.getQueryParameter(KEY_QUERY_PARAM_KEY)?.toLongOrNull()
-                val perPage = uri.getQueryParameter(PER_PAGE_QUERY_PARAM_KEY)?.toIntOrNull()
+                val key = uri.getQueryParameter(KEY_QUERY_PARAM_KEY)?.toLongOrNull() ?: -1
+                val perPage = uri.getQueryParameter(PER_PAGE_QUERY_PARAM_KEY)?.toIntOrNull() ?: -1
                 val data = favoriteUserDao.getFavUser(key, perPage)
+                Log.d(this::class.simpleName, data.toString())
                 data.toCursor()
             }
             else -> throw IllegalArgumentException("Unknown Uri Path")
@@ -90,16 +90,7 @@ class GithubUserProvider : ContentProvider() {
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        Log.d(this::class.simpleName, uri.toString())
-        return when (uriMatcher.match(uri)) {
-            1 -> {
-                val id = uri.getQueryParameter(ID_QUERY_PARAM_KEY)?.toIntOrNull()
-                    ?: throw IllegalArgumentException("Empty ID")
-                favoriteUserDao.deleteFavUser(id)
-                0
-            }
-            else -> throw IllegalArgumentException("Unknown Uri Path")
-        }
+        TODO("Not yet implemented")
     }
 
     override fun update(

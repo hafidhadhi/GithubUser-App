@@ -9,7 +9,6 @@ import com.hafidhadhi.submissiontwo.data.local.entity.FavoriteUserEnt
 import com.hafidhadhi.submissiontwo.data.local.entity.toContentValues
 import com.hafidhadhi.submissiontwo.data.local.pagingsource.FavoritePagingSource
 import com.hafidhadhi.submissiontwo.data.remote.dto.GithubUser
-import com.hafidhadhi.submissiontwo.provider.ID_QUERY_PARAM_KEY
 import com.hafidhadhi.submissiontwo.provider.uriBuilder
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
@@ -40,18 +39,10 @@ class GithubUserLocalDataSource @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun insertFavUser(favoriteUserEnt: FavoriteUserEnt) {
+    override suspend fun insertOrDeleteFavUser(favoriteUserEnt: FavoriteUserEnt) {
         val contentResolver = context.contentResolver
         val uri = uriBuilder.build()
         contentResolver.insert(uri, favoriteUserEnt.toContentValues())
-    }
-
-    override suspend fun deleteFavUser(id: Int) {
-        val contentResolver = context.contentResolver
-        val uri = uriBuilder
-            .appendQueryParameter(ID_QUERY_PARAM_KEY, id.toString())
-            .build()
-        contentResolver.delete(uri, null)
     }
 
     override fun getFavUser(): Flow<PagingData<FavoriteUserEnt>> {

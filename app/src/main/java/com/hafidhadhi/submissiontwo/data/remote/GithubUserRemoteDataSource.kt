@@ -60,11 +60,7 @@ class GithubUserRemoteDataSource @Inject constructor(
         ).flow
     }
 
-    override suspend fun insertFavUser(favoriteUserEnt: FavoriteUserEnt) {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun deleteFavUser(id: Int) {
+    override suspend fun insertOrDeleteFavUser(favoriteUserEnt: FavoriteUserEnt) {
         TODO("Not yet implemented")
     }
 
