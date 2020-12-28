@@ -8,7 +8,7 @@ class MyInterceptor : Interceptor {
         val request = chain.request()
         val modifiedReq = request.newBuilder()
             .addHeader("Accept", "application/vnd.github.v3+json")
-//            .addHeader("Authorization", "token 9cd7a685216af93a60d753a90bb5bfd508cdb329")
+//            .addHeader("Authorization", "token 8038e84ff73d107f1ea157d9971e22e377e14d2a")
             .build()
 
         return chain.proceed(modifiedReq)

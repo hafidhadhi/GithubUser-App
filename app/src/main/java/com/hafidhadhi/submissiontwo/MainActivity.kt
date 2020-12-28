@@ -9,6 +9,8 @@ import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,13 +19,21 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private var menu: Menu? = null
+    private lateinit var adView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme_ActivityTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupNavController()
+        setupAd()
+    }
+
+    private fun setupAd() {
+        adView = findViewById(R.id.adView)
+        val adRequest =
+            AdRequest.Builder().addTestDevice("1984736F56A8DA57E2E6A722321901BF").build()
+        adView.loadAd(adRequest)
     }
 
     private fun setupNavController() {

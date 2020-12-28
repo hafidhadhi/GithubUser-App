@@ -23,4 +23,9 @@
     <string name="reminder_notif_content">Let\'s find popular user on Github!</string>
     <string name="setting">Setting</string>
     <string name="empty_data_title">Empty Data</string>
+    <!--    Test Ad-->
+    <string name="ad_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+<!--    <string name="ad_app_id" translatable="false">ca-app-pub-4990071940530808~6217795543</string>-->
+<!--    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-4990071940530808/9773897170</string>-->
 </resources>
